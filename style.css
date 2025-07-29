@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    --primary-color: #7C6E48;
+    --primary-color-active: #9E8C66;
+    --dropdown-bg: #a59568;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+body {
+    background-color: #081615;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26, 105, 101, 0.8) 0%, rgba(26, 105, 101, 0.3) 100%);
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.background::before, .background::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.3;
+    animation: pulsate 8s infinite alternate;
+}
+
+.background::before {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(26, 105, 101, 0.4) 0%, rgba(26, 105, 101, 0.1) 70%);
+    top: -20vh;
+    right: -10vw;
+}
+
+.background::after {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(124, 110, 72, 0.4) 0%, rgba(124, 110, 72, 0.1) 60%);
+    bottom: -20vh;
+    left: -10vw;
+}
+
+@keyframes pulsate {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 0.4;
+        transform: scale(1.05);
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.branding {
+    max-width: 700px;
+}
+
+.logo {
+    width: 500px;
+    height: 500px;
+    border-radius: 20%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+h1 {
+    margin-top: 100px;
+    font-size: 4.5rem;
+    opacity: 0;
+    line-height: 1.1;
+}
+
+.subtitle {
+    display: block;
+    font-size: 4.0rem;
+    margin-bottom: 20px;
+}
+
+.bio {
+    margin-top: 70px;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin-bottom: 50px;
+    max-width: 520px;
+    opacity: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    opacity: 0;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 50px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.0rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #a59568;
+    transform: scale(1.15);
+}
+
+.btn.active {
+    background-color: var(--primary-color-active);
+}
+
+.kontakt-wrapper, .moje-delo-wrapper {
+    position: relative;
+}
+
+.contact-dropdown, .moje-delo-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--dropdown-bg);
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 100;
+    animation: jump 0.5s ease;
+    display: none;
+}
+
+.contact-row, .moje-delo-row {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.moje-delo-row a {
+    color: white;
+    text-decoration: none;
+}
+
+.moje-delo-row a:hover {
+    text-decoration: underline;
+}
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .branding {
+        text-align: center;
+    }
+    
+    .logo {
+        margin-bottom: 30px;
+        width: 300px;
+        height: 300px;
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 2rem;
+    }
+    
+    .bio {
+        margin: 0 auto 30px;
+    }
+    
+    .buttons {
+        justify-content: center;
+    }
+}
